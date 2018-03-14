@@ -201,7 +201,7 @@ public class GameActivity extends AppCompatActivity {
             ArrayList<String> choice = new ArrayList<String>();
             choice.add("แกะ");
             choice.add("นก");
-            choice.add("ช้าง");
+            choice.add("หมา");
             choice.add("หมู");
             Collections.shuffle(choice);
             btn1.setText(choice.remove(0));
