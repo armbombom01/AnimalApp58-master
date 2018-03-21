@@ -25,6 +25,7 @@ public class GameActivity extends AppCompatActivity {
     ArrayList<Integer> qID = new ArrayList<Integer>();
     String answer;
     int score = 0;
+    String getNameString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class GameActivity extends AppCompatActivity {
         questionImageView = findViewById(R.id.imvQuestion);
         volumnImageButton = findViewById(R.id.imbVolumn);
 
-        //แสดงคำถาม
+        //นับจำนวนแสดงคำถาม
         for (int i=1; i <= questionCount; i++) {
             qID.add(i);
         }
@@ -47,7 +48,7 @@ public class GameActivity extends AppCompatActivity {
         setQuestion(qID.remove(0));
     }//end onCreate Method
 
-    private void setQuestion(int qID) { // method setQuestion ทำหน้าที่กำหนดข้อคำถ่มและเฉลยในแต่ละข้อ
+    private void setQuestion(int qID) { // method setQuestion ทำหน้าที่กำหนดข้อคำถามและเฉลยในแต่ละข้อ
 
         if (qID == 1) {
             answer = "นก";
@@ -220,7 +221,8 @@ public class GameActivity extends AppCompatActivity {
         }
 
         if (qID.isEmpty()) {//ถ้าทำครบทุกข้อเเล้ว qid เป็นค่าว่าง
-            dialogboxScore();//สำหรับเเสดงคะเเนนรวม
+            getNameString = getIntent().getStringExtra("Name");
+            dialogboxScore(getNameString);//สำหรับเเสดงคะเเนนรวม
         }else {//ถ้ายังทำไม่ครบทุกข้อ
             setQuestion(qID.remove(0));//เรียก method  setQuestion เเสดงค่าคำถามถัดไป
         }
@@ -228,10 +230,10 @@ public class GameActivity extends AppCompatActivity {
 
     }//end choiceAns
 
-    private void dialogboxScore() {// Method สำหรับเเสดงคะเนน
+    private void dialogboxScore(String name) {// Method สำหรับเเสดงคะเนน
         AlertDialog.Builder builder =  new AlertDialog.Builder(this);
         builder.setTitle("สรุปคะเเนน");
-        builder.setMessage("ได้คะเเนน "+score+" คะแนน")
+        builder.setMessage(name+"ได้คะเเนน "+score+" คะแนน")
             .setCancelable(false)
             .setPositiveButton("ออกจากเกม",new DialogInterface.OnClickListener() {
                 @Override
